@@ -1,0 +1,86 @@
+#lang plai
+
+(require (for-syntax racket/base) racket/match racket/list racket/string
+         (only-in mzlib/string read-from-string-all))
+
+;; build a regexp that matches restricted character expressions, can use only
+;; {}s for lists, and limited strings that use '...' (normal racket escapes
+;; like \n, and '' for a single ')
+(define good-char "(?:[ \t\r\na-zA-Z0-9_{}!?*/<=>:+-]|[.][.][.])")
+;; this would make it awkward for students to use \" for strings
+;; (define good-string "\"[^\"\\]*(?:\\\\.[^\"\\]*)*\"")
+(define good-string "[^\"\\']*(?:''[^\"\\']*)*")
+(define expr-re
+  (regexp (string-append "^"
+                         good-char"*"
+                         "(?:'"good-string"'"good-char"*)*"
+                         "$")))
+(define string-re
+  (regexp (string-append "'("good-string")'")))
+
+(define (string->sexpr str)
+  (unless (string? str)
+    (error 'string->sexpr "expects argument of type <string>"))
+    (unless (regexp-match expr-re str)
+      (error 'string->sexpr "syntax error (bad contents)"))
+    (let ([sexprs (read-from-string-all
+                 (regexp-replace*
+                  "''" (regexp-replace* string-re str "\"\\1\"") "'"))])
+    (if (= 1 (length sexprs))
+      (car sexprs)
+      (error 'string->sexpr "bad syntax (multiple expressions)"))))
+
+(test/exn (string->sexpr 1) "expects argument of type <string>")
+(test/exn (string->sexpr ".") "syntax error (bad contents)")
+(test/exn (string->sexpr "{} {}") "bad syntax (multiple expressions)")
+
+
+;; BFAE abstract syntax trees
+; BFAE is consist of operations(add, sub) and items (num, id)
+; and funtion with application(fun, app), and box with box-operations(newbox, setbox, openbox) and helper(seqn) which helps to operate sequence by sequence
+(define-type BWAE
+  [num (n number?)]
+  [id (name symbol?)]
+  [add (lft BWAE?) (rht BWAE?)]
+  [sub (lft BWAE?) (rht BWAE?)]
+  [fun (param id?) (body BWAE?)]
+  [app (ft BWAE?) (arg BWAE?)]
+  [newbox (cont BWAE?)]
+  [openbox (cont BWAE?)]
+  [setbox (box BWAE?) (cont BWAE?)]
+  [seqn (fst BWAE?) (sec BWAE?)]
+  )
+
+(define (parse-expr sexp)
+  (match sexp
+    [(list '+ l r) (add (parse-expr l) (parse-expr r))]
+    [(list '- l r) (sub (parse-expr l) (parse-expr r))]
+    [(list 'fun param body) (fun (parse-expr param) (parse-expr body))]
+    [(list 'newbox cont) (newbox (parse-expr cont))]
+    [(list 'openbox cont) (openbox (parse-expr cont))]
+    [(list 'setbox box cont) (setbox (parse-expr box) (parse-expr cont))]
+    [(list 'seqn fst sec) (seqn (parse-expr fst) (parse-expr))]
+    [(list ftn arg) (app (parse-expr ftn) (parse-expr arg))]
+    [(list single) (parse-expr single)]
+    [(? symbol?) (id sexp)]
+    [(? number?) (num sexp)]
+    [else (error 'parse "bad-syntax: ~a" sexp)])
+
+
+
+(define (parse sexp)
+   (parse-expr (string->sexpr sexp)))
+
+
+(define-type BWAE-value
+  [numV (n number?)]
+  [closureV (param id?) (body BWAE?)]
+  [boxV (address integer?)])
+
+(define-type 
+
+
+
+
+
+
