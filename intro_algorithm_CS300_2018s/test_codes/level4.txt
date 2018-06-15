@@ -1,0 +1,43 @@
+---.......
+---.......
+oooo-----ooo
+ooo-------oo
+ooo-------oo
+oSo--oooo.....
+ooo--oooo.....
+-----oTo--..o.
+-----ooo--....
+
+
+    if(M == 64)
+    {
+        int arr[4];
+        for(int i = 0; i < N; i += 8)
+        {
+            for(int j = 0; j < M; j += 4)
+            {
+                for(int k = 0; k < 4; k ++)
+                {
+                    for(int l = 0; l < 4; l ++)
+                    {
+                        arr[l] = A[i + k][j + l];
+                    }
+                    for(int l = 0; l < 4; l ++)
+                    {
+                        B[j + l][i + k] = arr[l];
+                    }
+                }
+                for(int k = 0; k < 4; k ++)
+                {
+                    for(int l = 0; l < 4; l ++)
+                    {
+                        arr[l] = A[4 + i + k][(4 + j + l) % 64];
+                    }
+                    for(int l = 0; l < 4; l ++)
+                    {
+                        B[(4 + j + l) % 64][4 + i + k] = arr[l];
+                    }
+                }
+            }
+        }
+    }
