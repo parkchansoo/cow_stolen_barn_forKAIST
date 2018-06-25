@@ -4,18 +4,34 @@ public class Main {
     public static int TestCaseNum = 0;
     public static int TestSuccCnt = 0;
 
+    /* Test our function goes well */
     public static void main(String args[]) {
         String testRet = "";
         String testAns = "";
         /* Test cases */
         // test1
         testAns = "1-2";
-        testRet = ballonCounting(2, 2, new int[] {});
+        testRet = balloonCounting(2, 2, new int[] {});
         printTestResult(testAns, testRet);
 
         // test2
         testAns = "1-2-3-4";
-        testRet = ballonCounting(2, 2, new int[] {2});
+        testRet = balloonCounting(2, 2, new int[] {2});
+        printTestResult(testAns, testRet);
+
+        // test3
+        testAns = "4-2-5-7-6-3-1";
+        testRet = balloonCounting(5, 3, new int[] {2});
+        printTestResult(testAns, testRet);
+
+        // test4
+        testAns = "5-3-4-2-8-7-9-6-1-11-13-10-12";
+        testRet = balloonCounting(7, 11, new int[] {1, 4, 6});
+        printTestResult(testAns, testRet);
+
+        // test5
+        testAns = "8-5-2-9-6-12-7-1-14-4-13-3-11-10";
+        testRet = balloonCounting(10, 7, new int[] {1, 5});
         printTestResult(testAns, testRet);
 
         /* End of test, print test sumup */
@@ -44,8 +60,11 @@ public class Main {
         System.out.println("Test : " + TestSuccCnt + "/" + TestCaseNum + ".");
     }
 
-    public static String ballonCounting(int size, int M, int[] boom) {
+
+    /* our target function to evaluate balloon game result */
+    public static String balloonCounting(int size, int M, int[] boom) {
         String ret = "";
+
         return ret;
     }
 }
