@@ -19,13 +19,17 @@ public class LinkedBalloonList {
         return this.size = size;
     }
 
-    public int getSize(int size) {
+    public int getSize() {
         return size;
     }
 
     public boolean isEmpty() {
         return (size == 0);
     }
+
+    public Balloon getHead() { return head; }
+
+    public Balloon getTail() { return tail; }
 
     /* build up balloon Linked list
      * with given number and boomlist
@@ -37,7 +41,7 @@ public class LinkedBalloonList {
         for(int i = 0; i < listSize; i ++)
             insertBalloon();
 
-        Balloon tailing = tail;
+        Balloon tailing = head;
         int currBoomHead;
         int prevBoomHead = 0;
         for(int i = 0; i < boomLen; i ++) {
@@ -63,22 +67,22 @@ public class LinkedBalloonList {
         return this.head;
     }
 
-    public void remove() {
+    public String remove() {
         /* remove curr head
          * if isBoom > insert two more balloons
          */
+        String ret = "" + head.getNum();
         head = head.getNext();
         tail.setNext(head);
         size --;
+        return ret;
     }
 
-    public void boom() {
-        Balloon heading = head;
+    public String boom() {
         insertBalloon();
         insertBalloon();
-        tail = head;
-        head = tail.getNext();
-        remove();
+        rotate(size -2 );
+        return remove();
     }
 
 
@@ -105,11 +109,25 @@ public class LinkedBalloonList {
         String ret = "";
         Balloon curr = head;
         ret += curr.getNum();
-        for(int i = 0; i < size; i ++) {
+        for (int i = 1; i < size; i++) {
             ret += "-";
             curr = curr.next;
             ret += curr.getNum();
         }
+        return ret;
+    }
+
+    public String printBoomList() {
+        String ret = "[";
+        Balloon curr = head;
+        for(int i = 0; i < size; i ++) {
+            if(curr.isBoom()) {
+                ret += curr.getNum();
+                ret += ", ";
+            }
+            curr = curr.next;
+        }
+        ret += "]";
         return ret;
     }
 }
