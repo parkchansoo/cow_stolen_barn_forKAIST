@@ -81,7 +81,7 @@ public class LinkedBalloonList {
     public String boom() {
         insertBalloon();
         insertBalloon();
-        rotate(size -2 );
+        rotate(size - 2);
         return remove();
     }
 

@@ -20,17 +20,17 @@ public class Main {
         printTestResult(testAns, testRet);
 
         // test3
-        testAns = "4-3-5-2-6-1-7";
+        testAns = "4-2-5-7-6-3-1";
         testRet = balloonCounting(5, 3, new int[] {2});
         printTestResult(testAns, testRet);
 
         // test4
-        testAns = "5-4-1-3-10-7-2-11-6-9-8-13-12";
+        testAns = "5-3-4-2-8-7-9-6-1-11-13-10-12";
         testRet = balloonCounting(7, 11, new int[] {1, 4, 6});
         printTestResult(testAns, testRet);
 
         // test5
-        testAns = "8-6-5-3-2-4-12-10-9-11-1-14-13-7";
+        testAns = "8-5-2-9-6-12-7-1-14-4-13-3-11-10";
         testRet = balloonCounting(10, 7, new int[] {1, 5});
         printTestResult(testAns, testRet);
 
@@ -72,10 +72,14 @@ public class Main {
         System.out.println("size: " + lbl.getSize());
         System.out.println("BoomList: " + lbl.printBoomList());
 
+        lbl.rotate(1);
+        M = M -1;
         while(!lbl.isEmpty()) {
             lbl.rotate(M);
-            if(lbl.getHead().isBoom())
+            if(lbl.getHead().isBoom()) {
                 ret += lbl.boom();
+                lbl.rotate(1);
+            }
             else
                 ret += lbl.remove();
 
