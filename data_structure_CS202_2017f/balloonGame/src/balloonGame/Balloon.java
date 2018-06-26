@@ -24,6 +24,7 @@ public class Balloon {
     }
 
     public boolean setBoom() {
+        this.isBoom = true;
         return isBoom;
     }
 

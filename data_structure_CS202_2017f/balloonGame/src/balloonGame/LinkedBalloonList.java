@@ -34,21 +34,29 @@ public class LinkedBalloonList {
         for(int i = 0; i < listSize; i ++)
             insertBalloon();
 
+        Balloon tailing = tail;
         int currBoomHead;
         int prevBoomHead = 0;
-        for(int i = 0; i < boomLen; i --) {
+        for(int i = 0; i < boomLen; i ++) {
             currBoomHead = boomList[i];
             prevBoomHead = currBoomHead - prevBoomHead;
-            // ratate moves
-            // and mark isBoom
-
+            rotate(prevBoomHead);
+            head.setBoom();
             prevBoomHead = currBoomHead;
         }
+
+        tail = tailing;
+        head = tail.getNext();
         return this;
     }
 
     public Balloon rotate(int moves) {
-        // ToDo. make rotation
+        if (size > 1) {
+            for (int i = 0; i < moves; i++) {
+                tail = head;
+                head = tail.getNext();
+            }
+        }
         return this.head;
     }
 
@@ -56,15 +64,36 @@ public class LinkedBalloonList {
         /* remove curr head
          * if isBoom > insert two more balloons
          */
+        head = head.getNext();
+        tail.setNext(head);
+    }
+
+    public void boom() {
+        Balloon heading = head;
+        insertBalloon();
+        insertBalloon();
+        tail = head;
+        head = tail.getNext();
+        remove();
     }
 
 
     public Balloon insertBalloon() {
         cnt ++;
         if(isEmpty()) {
-
+            head = new Balloon(cnt);
+            tail = head;
+            head.setNext(tail);
+            tail.setNext(head);
+        } else {
+            Balloon next = head.getNext();
+            Balloon curr = new Balloon(cnt);
+            curr.setNext(next);
+            head.setNext(curr);
+            tail = head;
+            head = curr;
         }
-
+        size ++;
         return head;
     }
 }
