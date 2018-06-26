@@ -64,6 +64,9 @@ public class Main {
     /* our target function to evaluate balloon game result */
     public static String balloonCounting(int size, int M, int[] boom) {
         String ret = "";
+        LinkedBalloonList lbl = new LinkedBalloonList();
+        lbl.setBalloonList(size, boom);
+        System.out.println(lbl.printLBL());
 
         return ret;
     }

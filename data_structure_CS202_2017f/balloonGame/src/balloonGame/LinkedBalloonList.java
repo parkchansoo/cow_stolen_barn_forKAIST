@@ -27,6 +27,9 @@ public class LinkedBalloonList {
         return (size == 0);
     }
 
+    /* build up balloon Linked list
+     * with given number and boomlist
+     * */
     public LinkedBalloonList setBalloonList(int listSize, int[] boomList) {
         Arrays.sort(boomList);
         int boomCnt;
@@ -66,6 +69,7 @@ public class LinkedBalloonList {
          */
         head = head.getNext();
         tail.setNext(head);
+        size --;
     }
 
     public void boom() {
@@ -95,5 +99,17 @@ public class LinkedBalloonList {
         }
         size ++;
         return head;
+    }
+
+    public String printLBL() {
+        String ret = "";
+        Balloon curr = head;
+        ret += curr.getNum();
+        for(int i = 0; i < size; i ++) {
+            ret += "-";
+            curr = curr.next;
+            ret += curr.getNum();
+        }
+        return ret;
     }
 }
