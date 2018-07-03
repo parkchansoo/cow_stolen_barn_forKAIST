@@ -24,7 +24,7 @@ knight always moves _(+-1, +-2) or (+-2, +-1)_
 possible path : (1, 1) -> (3, 2) -> (1, 3) -> (2, 1)
 ```
 
-#### `Bad answer` : return 6  
+#### `Bad answer` : return 5  
 ```java
 // it's *wrong* even the Knight have path to reach target point.  
 non optimal path : (1, 1) -> (2, 3) -> (3, 1) -> (1, 2) -> (3, 3) -> (2, 1)
