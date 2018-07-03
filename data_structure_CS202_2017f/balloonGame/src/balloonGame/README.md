@@ -25,20 +25,20 @@ size = 6, M = 2, boom = {5}
 
  1 |  2  |  3  |  4  |  5  |  6 
 ------------ | ------------- | ------------- | ------------- | ------------- | -------------
-:balloon::heavy_check_mark:| :balloon:| :balloon:| :balloon:| :red_circle:| :balloon:
+:balloon::heavy_check_mark:| :balloon:| :balloon:| :balloon:| :gift:| :balloon:
 
 2. Pop the __2nd balloon__ `balloon 3` by the position of the `balloon 1`.
 
  1 |  2  |  3  |  4  |  5  |  6 
 ------------ | ------------- | ------------- | ------------- | ------------- | -------------
-:balloon:| :balloon:| :anger::heavy_check_mark:| :balloon:| :red_circle:| :balloon:
+:balloon:| :balloon:| :anger::heavy_check_mark:| :balloon:| :gift:| :balloon:
 
 
-3. Pop next 2nd ballon `balloon 5` by the position of the `popped balloon 3`. The boom:boom: is popped!
+3. Pop next 2nd ballon `balloon 5` by the position of the `popped balloon 3`. The boom:tada: is popped!
 
  1 |  2  | - | 4  |  5 |  6 
 ------------ | ------------- | ------------- | ------------- | ------------- | -------------
-:balloon:| :balloon:|  | :balloon:| :boom::heavy_check_mark: | :balloon:
+:balloon:| :balloon:|  | :balloon:| :tada::heavy_check_mark: | :balloon:
 
 
 4. __Add two__ new balloons to the __location of the popped boom__. 
@@ -46,7 +46,7 @@ size = 6, M = 2, boom = {5}
     
 1 | 2  |-  |  4  |  5 |  7  |  8 |  6 
 ------ | ----|----| ------------- | ------------- | ------------- | -------------| -------------
-:balloon:| :balloon:| | :balloon:| :boom::heavy_check_mark: | :balloon: | :balloon: | :balloon:
+:balloon:| :balloon:| | :balloon:| :tada::heavy_check_mark: | :balloon: | :balloon: | :balloon:
 
 
 5. After the boom is popped, begin at the balloon 7 which is the same position that the boom was. Pop next 2nd balloon `balloon 6` by the position of balloon 7.
