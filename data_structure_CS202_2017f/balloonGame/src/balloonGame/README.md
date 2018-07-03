@@ -81,10 +81,11 @@ size = 6, M = 2, boom = {5}
 
  x |  -  | -  |    4    |  - |  -  |  8 |  - 
 -- |-----|--- |-------- |--- |---- |--- | -----
-   |     |    |:balloon:|    |     |    | 
+   |     | |    |:balloon:|    |     | :anger::heavy_check_mark:
 
 
-and keep pop the balloon before all balloon is poped.
+
+and keep pop the balloon until all balloons are poped.
 
 ### Test cases
 ```java
