@@ -1,10 +1,10 @@
 # BalloonGame
 
-### Singly_Linked_List Example
+### 0. Singly_Linked_List Example
 Example to create and test `singly linked list` with some game named __balloon game__.
 
 
-### Balloon Game Rule
+### 1. Balloon Game Rule
 There are `N circular singly linked balloons` in a __clockwisedirection__. The player pops every `M-th balloon` on the current position in balloons list. If the player pops a __boom__, the boom is removed but __two new balloons are added__ to the boom’s poistion. When a player pops all the balloons, the game ends. __Find the order of popping balloons!__.
 
   •	N , M >= 2
@@ -14,7 +14,7 @@ There are `N circular singly linked balloons` in a __clockwisedirection__. The p
   4. if the target balloon is on boom-list, then create new two balloon with increased number.
   5. and next time, your start point is poped place which first balloon created.
 
-### Game Example
+### 2. Game Example
 
 There are 6 balloons. Among them balloon 5 is a boom. In this example, 
 let’s assume that M = 2. Pop every 2nd ballloon on the current position.
@@ -87,7 +87,7 @@ size = 6, M = 2, boom = {5}
 
 and keep pop the balloon until all balloons are poped.
 
-### Test cases
+### 3. Test cases
 ```java
 size = 2, M = 2, boom = {}
 printed balloon order >>> 1-2
