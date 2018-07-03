@@ -77,6 +77,14 @@ size = 6, M = 2, boom = {5}
 :anger::heavy_check_mark:| | |:balloon:| |  | :balloon: | 
 
 
+9. Pop the 2nd balloon `balloon 8` by the position of the popped balloon 1.
+
+ x |  -  | -  |    4    |  - |  -  |  8 |  - 
+-- |-----|--- |-------- |--- |---- |--- | -----
+   |     |    |:balloon:|    |     |    | 
+
+
+and keep pop the balloon before all balloon is poped.
 
 ### Test cases
 ```java
