@@ -40,6 +40,7 @@ public class myQueue<T> {
         for(int i = 0; i < first; i ++) {
             newContainer[size + i] = container[i];
         }
+        this.container = newContainer;
     }
 
     public int enqueue(T e) {

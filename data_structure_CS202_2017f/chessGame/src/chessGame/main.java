@@ -5,20 +5,41 @@ public class Main {
     static int TestSuccCnt = 0;
 
     public static void main(String[] args) {
+
+        /* testing myQueue DS */
+        myQueue<Integer> queue = new myQueue<>();
+        for (int i = 0; i < 101; i ++) {
+            queue.enqueue(i);
+        }
+        for (int i = 0; i < 101; i ++) {
+            System.out.print(queue.dequeue() + " - ");
+        }
+        System.out.println("");
+
         /* Test cases */
         String eval = "";
         String fval = "";
+
         // TestCase1
         fval += minimunKnightMove(new int[] {1, 2}, new int[] {4, 5}, 5);
+        eval = "2";
+        printTestResult(eval, fval);
+
+        // TestCase2
+        fval = "" + minimunKnightMove(new int[] {1, 1}, new int[] {4, 5}, 5);
         eval = "3";
         printTestResult(eval, fval);
 
-        /*
-        // TestCase2
-        Integer[] StartPos2 = {1, 1};
-        Integer[] TargetPos2 = {4, 5};
-        int N2 = 5;
-        */
+        // TestCase3
+        fval = "" + minimunKnightMove(new int[] {5, 7}, new int[] {15, 20}, 22);
+        eval = "9";
+        printTestResult(eval, fval);
+
+        // TestCase4
+        fval = "" + minimunKnightMove(new int[] {1, 1}, new int[] {2, 2}, 3);
+        eval = "-1";
+        printTestResult(eval, fval);
+
         testResultSumup();
     }
 
@@ -55,7 +76,11 @@ public class Main {
 
     public static int minimunKnightMove(int[] startPos, int[] targetPos, int N) {
         int ret = 0;
-        myQueue<myNode> moves = new myQueue<>();
+        myQueue<myNode> moves = new myQueue<>();x
+        startPos[0] --;
+        startPos[1] --;
+        targetPos[0] --;
+        targetPos[1] --;
         // initializing board history
         int[][] board = new int[N][N];
         for(int i = 0; i < N; i ++) {
@@ -86,14 +111,21 @@ public class Main {
                 currX = currStat.x + movable[i][0];
                 currY = currStat.y + movable[i][1];
                 if(currX == targetPos[0] && currY == targetPos[1]) {
-                    step = currStat.step;
+                    step = currStat.step + 1;
                     flag = true;
+                    /* you can use for watching how Knight are moving
+                     * System.out.println("curr....x: " + currX  + "/ y: " + currY + " / step: " + step);
+                     */
+                    break;
                 }
                 if( (currX > -1 && currX < N) && (currY > -1 && currY < N) && (board[currX][currY] == 0)) {
                     board[currX][currY] = 1; // recording that knight already stepped
                     step = currStat.step + 1;
-                    currStat = new myNode(currX, currY, step);
-                    moves.enqueue(currStat);
+                    myNode nextStat = new myNode(currX, currY, step);
+                    moves.enqueue(nextStat);
+                    /* you can use for watching how Knight are moving
+                     * System.out.println("curr....x: " + currX  + "/ y: " + currY + " / step: " + step);
+                     */
                 }
             }
         }
